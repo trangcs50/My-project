@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login Page
+{% endblock %}
+
+{% block body %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form action="/login" method="post">
+        <div class="container">
+            <input autofocus autocomlete="off" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="container">
+            <input autocomplete="off" name="password" placeholder="Password" type="password">
+        </div>
+        <div>
+            <button type="submit">Log in</button>
+        </div>
+    </form>
+{% endblock %}

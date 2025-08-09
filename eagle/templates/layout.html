@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1 width= device-width">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <title>Eagle: {% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        {% if current_user.is_authenticated %}
+            <nav>
+                    <a href="/">Eagle</a>
+                    <a href="/profile">Profile</a>
+                    <a href="/logout">Log out</a>
+                    {% if current_user.role == 'restaurant' %}
+                        <a href="/role">Role</a>
+                    {% endif %}
+            </nav>
+        {% else %}
+            <nav>
+                <a href="/login">Log in</a>
+                <a href="/register">Register</a>
+            </nav>
+        {% endif %}
+        {% block body %}{% endblock %}
+    </body>
+</html>

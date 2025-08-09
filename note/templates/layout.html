@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link href="static/style.css" rel="stylesheet">
+        <style>
+            nav
+            {
+                display: flex;
+                padding-right: 10px;
+            }
+        </style>
+        <title>{% block title %}Note: {% endblock %}</title>
+            <nav>
+                {% if current_user.is_authenticated %}
+                    <form action="/logout" method="post">
+                        <button type="submit">Log out</button>
+                    </form>
+                    <form action="/" method="get">
+                        <button type="submit">Note</button>
+                    </form>
+                    {% else %}
+                    <form action="/login" method="get">
+                        <button type="submit">Log in</button>
+                    </form>
+                    <form action="/register" method="get">
+                        <button type="submit">Register</button>
+                    </form>
+                {% endif %}
+            </nav>
+    </head>
+    <body>
+        {% block main %}{% endblock %}
+    </body>
+</html>

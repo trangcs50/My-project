@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block body %}
+    <h1>Dishes</h1>
+    {% for row in rows %}
+        <h2>{{row.name}}</h2>
+        <form action="/cart" method="post">
+            <input name="dishes" value="{{row.id}}" type="hidden">
+            <button type="submit">Add to cart</button>
+        </form>
+    {% endfor %}
+{% endblock %}

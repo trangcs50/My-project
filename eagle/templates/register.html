@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register Page
+{% endblock %}
+
+{% block body %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for messages in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form action="/register" method="post">
+        <div>
+            <input autofocus autocomplete="off" name="username" placeholder="Username" type="text" required>
+        </div>
+        <div>
+            <input autocomplete="off" autofocus name="password" placeholder="Password" type="password" required minlength="6" required>
+        </div>
+        <div>
+            <input autocomplete="off" autofocus name="confirmation" placeholder="Confirmation" type="password">
+        </div>
+        <div>
+            <input pattern="^[0-9]{1,5}(,\s*|\s+)[A-Za-z\s]+(,\s*[A-Za-z\s]+)*$" autofocus autocomplete="off" name="address" placeholder="Address" type="text" required oninvalid="this.setCustomValidity('Invalid address')" oninput="this.setCustomValidity('')">
+        </div>
+        <div>
+            <input pattern="^\+?[0-9]{9,15}$" autofocus autocomplete="off" name="phone" placeholder="Phone number" type="text" required oninvalid="this.setCustomValidity('Invalid phone number')" oninput="this.setCustomValidity('')">
+        </div>
+        <div>
+            <select name="option" required>
+                <option value="role" disabled selected>Role</option>
+                <option value="customer"{% if option == "customer" %}selected{% endif %}>Customer</option>
+                <option value="restaurant"{% if option == "restaurant" %}selected{% endif %}>Restaurant</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+{% endblock %}

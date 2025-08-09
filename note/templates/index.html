@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My homepage
+{% endblock %}
+
+{% block main %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            let note = document.querySelector("#note");
+            note.addEventListener("submit", function(e){
+                e.preventDefault();
+                let li = document.createElement('li');
+                let input = document.querySelector('#input').value;
+                li.onclick = function(){
+                    if(confirm('You will remove this note are you sure?'))
+                    {
+                        li.remove();
+                    }
+                };
+                document.querySelector('#input').value = '';
+                li.textContent = input;
+                document.querySelector('ul').appendChild(li);
+            });
+        });
+    </script>
+    <h1>Welcome {{current_user.username | capitalize}}</h1>
+    <form id="note" action="/"  method="post">
+        <input autofocus autocomplete="off" name="note" placeholder="Type in your note" type="text" id="input">
+        <button type="submit">Add note</button>
+    </form>
+    <ul></ul>
+{% endblock %}

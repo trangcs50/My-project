@@ -1,0 +1,6 @@
+x = int(input("Input: "))
+y = int(input("Input: "))
+print(f"sum: {x + y}")
+print(f"product: {x * y}")
+print(f"quotient: {x/y}")
+print(f"difference: {x - y}")

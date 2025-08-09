@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container > div {
+  margin: 10px;
+  padding: 10px;
+  font-family: sans-serif;
+}/*# sourceMappingURL=style.css.map */

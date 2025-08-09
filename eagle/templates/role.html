@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Role
+{% endblock %}
+
+{% block body %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form action="/role" method="post">
+        <div>
+            <input name="name" autofocus autocomplete="off" placeholder="Restaurant's name" type="text">
+        </div>
+        <div>
+            <input name="address_restaurant" autofocus autocomplete="off" placeholder="Address" type="text"  pattern="^[0-9]{1,5}(,\s*|\s+)[A-Za-z\s]+(,\s*[A-Za-z\s]+)*$" required oninvalid="this.setCustomValidity('Invalid address')" oninput="this.setCustomValidity('')">
+        </div>
+        <div>
+            <input name="phone_restaurant" autofocus autocomplete="off" placeholder="Phone Number" pattern="^\+?[0-9]{9,15}$" type="text"  required oninvalid="this.setCustomValidity('Invalid phone number')" oninput="this.setCustomValidity('')">
+        </div>
+        <div>
+            <input name="dishes" autofocus autocomplete="off" placeholder="Main Dish" type="text">
+        </div>
+        <div>
+            <input name="price" autofocus autocomplete="off" placeholder="Price" type="text">
+        </div>
+        <div>
+            <input name="description" autofocus autocomplete="off" placeholder="Add Description(optionnal)" type="text">
+        </div>
+        <div>
+            <button type="submit">Add Information</button>
+        </div>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            let form = document.querySelector('form');
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                alert('You have successfully added your information!')
+            });
+        });
+    </script>
+{% endblock %}
